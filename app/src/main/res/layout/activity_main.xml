@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".MainActivity">
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <Button
+            android:id="@+id/small"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="small"/>
+        <Button
+            android:id="@+id/medium"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="medium"/>
+        <Button
+            android:id="@+id/large"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="large"/>
+        <Button
+            android:id="@+id/tts"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="tts"/>
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="@string/txt_message"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:scrollbars="vertical"/>
+
+</LinearLayout>
