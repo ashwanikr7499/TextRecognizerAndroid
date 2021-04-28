@@ -41,6 +41,7 @@ public class SpeakOut extends AppCompatActivity implements OnClickListener, Text
         if (requestCode == MY_DATA_CHECK_CODE) {
             if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
                 myTTS = new TextToSpeech(this, this);
+                myTTS.setSpeechRate(1.5f);
             }
             else {
                 Intent installTTSIntent = new Intent();
