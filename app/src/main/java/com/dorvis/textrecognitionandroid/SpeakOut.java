@@ -1,4 +1,4 @@
-package com.dorvis.textrecognitionandroid;
+    package com.dorvis.textrecognitionandroid;
 
 import android.content.Intent;
 import android.media.Image;
