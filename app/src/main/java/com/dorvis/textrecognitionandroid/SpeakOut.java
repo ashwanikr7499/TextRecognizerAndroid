@@ -1,9 +1,8 @@
     package com.dorvis.textrecognitionandroid;
 
 import android.content.Intent;
-import android.media.Image;
 import android.speech.tts.TextToSpeech;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
