@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     SurfaceView mCameraView;
     TextView mTextView;
-    Button small,medium,large,tts;
+    Button medium,large,tts,saved;
     CameraSource mCameraSource;
     int textSize=20;
     private static final String TAG = "MainActivity";
@@ -39,16 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         mCameraView = findViewById(R.id.surfaceView);
         mTextView = findViewById(R.id.text_view);
-        small=findViewById(R.id.small);
+
         medium=findViewById(R.id.medium);
         large=findViewById(R.id.large);
         tts=findViewById(R.id.tts);
-        small.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                textSize=15;
-            }
-        });
+        saved=findViewById(R.id.saved);
+
         medium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 myIntent.putExtra("curText", curText); //Optional parameters
                 startActivity(myIntent);
 
+            }
+        });
+        saved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MainActivity.this,UserListActivity.class);
+                startActivity(i);
             }
         });
         mTextView.setMovementMethod(new ScrollingMovementMethod());
