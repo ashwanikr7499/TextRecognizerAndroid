@@ -10,13 +10,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#000000">
-        <ImageView
-            android:id="@+id/speak"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="right"
-            android:padding="10dp"
-            android:src="@drawable/speak"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/save"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:paddingEnd="20dp"
+                android:padding="10dp"
+                android:src="@drawable/save"/>
+
+            <ImageView
+                android:id="@+id/speak"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:paddingStart="20dp"
+                android:padding="10dp"
+                android:src="@drawable/speak" />
+        </LinearLayout>
         <TextView
             android:id="@+id/tv_curText"
             android:layout_width="match_parent"

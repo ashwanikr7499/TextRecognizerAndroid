@@ -18,7 +18,7 @@ public class SpeakOut extends AppCompatActivity implements OnClickListener, Text
     TextView tv_curText;
     private int MY_DATA_CHECK_CODE = 0;
     private TextToSpeech myTTS;
-    ImageView speak;
+    ImageView speak,save;
     String curText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +31,30 @@ public class SpeakOut extends AppCompatActivity implements OnClickListener, Text
         tv_curText.setText(curText);
         tv_curText.setMovementMethod(new ScrollingMovementMethod());
         speak=findViewById(R.id.speak);
+        save=findViewById(R.id.save);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             DBHelper mydb=new DBHelper(getApplicationContext());
+            Long tsLong = System.currentTimeMillis()/1000;
+            String ts = tsLong.toString();
+             mydb.insertContact(ts,curText);
+             Toast.makeText(getApplicationContext(),"Saved", Toast.LENGTH_SHORT).show();
+            }
+        });
         speak.setOnClickListener(this);
         Intent checkTTSIntent = new Intent();
         checkTTSIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkTTSIntent, MY_DATA_CHECK_CODE);
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == MY_DATA_CHECK_CODE) {
             if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
                 myTTS = new TextToSpeech(this, this);
                 myTTS.setSpeechRate(1.5f);
-            }
-            else {
+            } else {
                 Intent installTTSIntent = new Intent();
                 installTTSIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
                 startActivity(installTTSIntent);
