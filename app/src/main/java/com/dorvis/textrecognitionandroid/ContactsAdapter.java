@@ -2,6 +2,7 @@ package com.dorvis.textrecognitionandroid;
 
 import android.content.Context;
 import android.text.format.DateFormat;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +56,8 @@ public class ContactsAdapter extends
         cal.setTimeInMillis(Long.parseLong(contact.getTime()) * 1000);
         String date = DateFormat.format("dd-MM-yyyy HH:mm:ss", cal).toString();
         textView.setText(date);
-        Button button = holder.messageButton;
-        button.setText(contact.getText());
+        TextView tv = holder.messageButton;
+        tv.setText(contact.getText());
 
     }
 
@@ -71,7 +72,7 @@ public class ContactsAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
-        public Button messageButton;
+        public TextView messageButton;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -81,7 +82,8 @@ public class ContactsAdapter extends
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
-            messageButton = (Button) itemView.findViewById(R.id.message_button);
+            messageButton = (TextView) itemView.findViewById(R.id.message_button);
+            messageButton.setMovementMethod(new ScrollingMovementMethod());
         }
 
     }
