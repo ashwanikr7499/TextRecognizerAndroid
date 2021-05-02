@@ -4,9 +4,11 @@ import android.content.Context;
 import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +33,7 @@ public class ContactsAdapter extends
     public ContactsAdapter(List<Contact> contacts) {
         mContacts = contacts;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -57,7 +60,7 @@ public class ContactsAdapter extends
         String date = DateFormat.format("dd-MM-yyyy HH:mm:ss", cal).toString();
         textView.setText(date);
         TextView tv = holder.messageButton;
-        tv.setText(contact.getText());
+        tv.setText(contact.getText().trim());
 
     }
 
@@ -73,6 +76,7 @@ public class ContactsAdapter extends
         // for any view that will be set as you render a row
         public TextView nameTextView;
         public TextView messageButton;
+        public ScrollView scrollView;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -84,6 +88,17 @@ public class ContactsAdapter extends
             nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
             messageButton = (TextView) itemView.findViewById(R.id.message_button);
             messageButton.setMovementMethod(new ScrollingMovementMethod());
+
+            scrollView = itemView.findViewById(R.id.childScroll);
+
+            scrollView.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    // Disallow the touch request for parent scroll on touch of child view
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    return false;
+                }
+            });
         }
 
     }
