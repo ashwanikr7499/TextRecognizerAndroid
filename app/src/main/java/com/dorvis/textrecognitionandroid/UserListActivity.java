@@ -2,7 +2,6 @@ package com.dorvis.textrecognitionandroid;
 
 import android.os.Bundle;
 import android.util.Pair;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -36,24 +35,18 @@ public class UserListActivity extends AppCompatActivity {
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
         // That's all!
 
-        rvContacts.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                findViewById(R.id.childScroll).getParent().requestDisallowInterceptTouchEvent(false);
-                return false;
-            }
-        });
 
         // Add a new contact
 //        contacts.add(0, new Contact("Barney", "Hi "));
-        // Notify the adapter that an item was inserted at position 0
+       // Notify the adapter that an item was inserted at position 0
 
-        delete_all = findViewById(R.id.delete_all);
-        final DBHelper dbHelper = new DBHelper(getApplicationContext());
+        delete_all=findViewById(R.id.delete_all);
+        final DBHelper dbHelper=new DBHelper(getApplicationContext());
 //        Toast.makeText(this, ""+dbHelper.getAllContacts().toString(), Toast.LENGTH_SHORT).show();
         adapter.notifyItemInserted(0);
-        for (Pair<String, String> p : dbHelper.getAllContacts()) {
-            contacts.add(new Contact(p.first, p.second));
+        for(Pair<String,String> p:dbHelper.getAllContacts())
+        {
+            contacts.add(new Contact(p.first,p.second));
         }
         delete_all.setOnClickListener(new View.OnClickListener() {
             @Override
