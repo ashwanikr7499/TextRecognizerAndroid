@@ -3,7 +3,9 @@ package com.dorvis.textrecognitionandroid;
 import android.content.Context;
 import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -57,7 +59,8 @@ public class ContactsAdapter extends
         String date = DateFormat.format("dd-MM-yyyy HH:mm:ss", cal).toString();
         textView.setText(date);
         TextView tv = holder.messageButton;
-        tv.setText(contact.getText());
+        tv.setText("\n"+contact.getText());
+
 
     }
 
@@ -81,9 +84,18 @@ public class ContactsAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
-            messageButton = (TextView) itemView.findViewById(R.id.message_button);
-            messageButton.setMovementMethod(new ScrollingMovementMethod());
+            nameTextView = itemView.findViewById(R.id.contact_name);
+            messageButton = itemView.findViewById(R.id.message_button);
+//            messageButton.setMovementMethod(new ScrollingMovementMethod());
+
+            itemView.findViewById(R.id.childScroll).setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    // Disallow the touch request for parent scroll on touch of child view
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    return false;
+                }
+            });
         }
 
     }

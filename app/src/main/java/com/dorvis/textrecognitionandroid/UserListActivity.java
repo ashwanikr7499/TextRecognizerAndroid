@@ -2,6 +2,7 @@ package com.dorvis.textrecognitionandroid;
 
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -34,6 +35,13 @@ public class UserListActivity extends AppCompatActivity {
         // Set layout manager to position the items
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
         // That's all!
+        rvContacts.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                findViewById(R.id.childScroll).getParent().requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
 
 
         // Add a new contact
